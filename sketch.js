@@ -12,12 +12,78 @@ let hoveredSet = null;
 function setup() {
   createCanvas(6000, windowHeight); 
   generateColorSets();
-  saveAllColorSets(); 
+  window.location.href = "#";
 }
+
+// Detect if user scroll
+
+let currentStage = 0; // 0 for #, 1 for #main
+const stages = ['#', '#main'];
+const scrollThreshold = 50; // Adjust sensitivity (higher = less sensitive)
+const swipeThreshold = 50; // Minimum distance for a swipe to trigger stage change
+let accumulatedScroll = 0;
+
+function navigateToStage(stage) {
+    if (stage >= 0 && stage < stages.length) {
+        currentStage = stage;
+        window.location.hash = stages[stage];
+
+        // Optional: Simulate fixed positions for each stage
+        if (stage === 0) {
+            window.scrollTo(0, 0); // Scroll to the top for #
+            document.querySelector('#hoveredSetContainer').classList.add('inactive');
+        } else if (stage === 1) {
+            window.scrollTo(0, window.innerHeight); // Scroll to a set point for #main
+            document.querySelector('#hoveredSetContainer').classList.remove('inactive');
+        }
+    }
+}
+
+/// Disable default scroll behavior
+document.addEventListener('wheel', (event) => {
+  accumulatedScroll += event.deltaY;
+
+  if (event.deltaY > 0 || event.deltaY < 0) {
+    event.preventDefault();
+  }
+
+  if (accumulatedScroll > scrollThreshold) {
+      // Scroll down
+      navigateToStage(1);
+      document.querySelector('#mainContainer').classList.add('cool-borders');
+      accumulatedScroll = 0; // Reset after trigger
+  } else if (accumulatedScroll < -scrollThreshold * 3) {
+      // Scroll up
+      navigateToStage(0);
+      document.querySelector('#mainContainer').classList.remove('cool-borders');
+      accumulatedScroll = 0; // Reset after trigger
+  }
+}, { passive: false });
+
+let startY = 0;
+
+// For touch devices
+document.addEventListener('touchstart', (event) => {
+  startY = event.touches[0].clientY;
+}, { passive: false });
+
+document.addEventListener('touchend', (event) => {
+  const endY = event.changedTouches[0].clientY;
+  const swipeDistance = startY - endY;
+
+  if (swipeDistance > swipeThreshold) {
+      // Swipe up
+      navigateToStage(1);
+  } else if (swipeDistance < -swipeThreshold) {
+      // Swipe down
+      navigateToStage(0);
+  }
+}, { passive: false });
+
 
 // Redimensionner la hauteur du canvas lorsque la fenêtre est redimensionnée
 function windowResized() {
-  resizeCanvas(6000, windowHeight); 
+  resizeCanvas(6000, windowHeight);
 }
 
 function generateColorSets() {
@@ -33,6 +99,7 @@ function generateColorSets() {
   }
 }
 
+// Générer des couleurs pour les concepts
 function generateColorsForConcepts(concept1, concept2) {
   let colors1 = generateColorsForConcept(concept1);
   let colors2 = generateColorsForConcept(concept2);
@@ -155,7 +222,6 @@ function generateColorsForConcept(concept) {
   return colors;
 }
 
-
 function draw() {
   background(255);
   let margin = 20;
@@ -232,7 +298,6 @@ function updateHoveredSetDisplay(hoveredSet) {
     if (posX + divWidth > window.innerWidth) {
       posX = posX - (divWidth - 20);
     }
-
     if (posY + divHeight > window.innerHeight + window.scrollY) {
       posY = mouseY - divHeight - 20 + window.scrollY;
     } else if (posY < window.scrollY) {
@@ -243,10 +308,10 @@ function updateHoveredSetDisplay(hoveredSet) {
     hoveredSetDiv.style.left = `${posX}px`; 
     hoveredSetDiv.style.top = `${posY}px`; 
   } else {
-    hoveredSetDiv.style.display = 'none'; // Cacher la div
+    hoveredSetDiv.style.display = 'none'; 
   }
 }
-
+// Enregistrer les ensembles de couleurs
 function saveAllColorSets() {
   let zip = new JSZip();
   let folder = zip.folder("colorSets");
@@ -265,6 +330,7 @@ function saveAllColorSets() {
   });
 }
 
+// Dessiner les ensembles de couleurs 
 function drawColorSetOnGraphics(graphics, colorSet) {
   let numColors = colorSet.colors.length;
   let squareSize = graphics.width;
