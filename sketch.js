@@ -391,6 +391,6 @@ function isAtStart() {
 
 // if the user is on mobile, hide the page and display an error message
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-  document.querySelector('body').style.display = 'none';
-  document.getElementById('errorMessage').style.display = 'block';
+  document.querySelector('#bodyContainer').style.display = 'none';
+  document.querySelector('#errorMessage').style.display = 'block';
 }

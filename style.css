@@ -430,11 +430,9 @@ p {
 }
 
 #errorMessage {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  text-align: center;
+  margin-top: 50vh;
+  transform: translateY(-50%);
   color: white;
   font-size: 2rem;
 }
