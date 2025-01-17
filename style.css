@@ -74,7 +74,7 @@ canvas {
   justify-content: center; 
   align-items: center; 
   width: 100vw;
-  height: calc(87vh);
+  height: 87vh;
   font-family: Outfit, sans-serif; 
 }
 
@@ -373,7 +373,7 @@ canvas {
   background: linear-gradient(164deg, rgba(0,3,37,1) 0%, rgba(43,0,45,1) 50%, rgba(37,22,0,1) 100%);
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly
+  justify-content:space-evenly
 }
 
 #hero {
@@ -385,7 +385,7 @@ canvas {
 }
 
 button {
-  margin-top: -6vh;
+  margin-top: -5vh;
   font-size: 1.5rem !important;
 }
 
@@ -407,7 +407,7 @@ p {
 }
 
 
-@media (max-width: 800px) {
+@media (max-width: 650px) {
   h1 {
     font-size: 12vw;
   }
@@ -421,6 +421,10 @@ p {
   }
 
   button {
-    font-size: 2rem !important;
+    font-size: 1rem !important;
+  }
+
+  #showcase {
+    height: 70vh
   }
 }
