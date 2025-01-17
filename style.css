@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body{
+  overflow-x: hidden;
+}
+
+main{
+  overflow: scroll;
+  width: 100vw;
+}
+
+canvas {
+  display: block;
+}
+
+#hoveredSet {
+  position: absolute; 
+  width: 400px; 
+  height: auto; 
+  background-color: rgba(164, 199, 255, 0.8); 
+  border-radius: 8px;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  pointer-events: none; 
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.hovered-color{
+  display: flex; 
+  justify-content: space-around; 
+  margin-top: 20px;
+}
+.hovered-set-color {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.hovered-square {
+  position: relative; 
+  width: 200px; 
+  height: 200px; 
+  margin: 20px auto;
+}
+.hovered-set-square {
+  position: absolute;
+}
+
+.hovered-set-gradient {
+  width: 100px;
+  height: 100px;
+  margin: 20px auto;
+}
+
+#showcase{
+  display: flex; 
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+  width: 100vw;
+  height: 100vh;
+  font-family: Outfit, sans-serif; 
+}
+
+h1{
+  font-size: 96px;
+}
+h2{
+  font-size: 48px
+}
+#showcase p{
+  font-size: 20px;
+}
+#load {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  gap: 4px;
+}
+
+#load img{
+  height: 100px;
+  width: auto;
+}
+
+#arrow, #arrow a{
+  margin-top: 20vh;
+  width: 200px;
+  transition: 0.5s;
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sketch</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="libraries/p5.min.js"></script>
+    <script src="libraries/p5.sound.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  </head>
+
+  <body>
+    <div id="showcase">
+      <h1>Combinaisons</h1>
+      <h2>240 pallets, all unique...</h2>
+      <div id="load"><p><i>a zip file is being generated</i></p> <img src="img/loader.gif" alt="loading"></div>
+      <a href="#main"><img id="arrow" src="img/arrow.gif" alt="arrow down"></a>
+    </div>
+    <div id="hoveredSet"></div> <!-- Conteneur pour le hoveredSet -->
+    <main id="main"></main>
+    <script src="sketch.js"></script>
+  </body>
+</html>
