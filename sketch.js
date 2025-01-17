@@ -387,3 +387,10 @@ scrollContainer.addEventListener('wheel', (event) => {
 function isAtStart() {
   return (scrollContainer.scrollLeft === 0);
 }
+
+
+// if the user is on mobile, hide the page and display an error message
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+  document.querySelector('body').style.display = 'none';
+  document.getElementById('errorContainer').style.display = 'block';
+}
