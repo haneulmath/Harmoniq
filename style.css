@@ -428,3 +428,13 @@ p {
     height: 70vh
   }
 }
+
+#errorMessage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+  font-size: 2rem;
+}
