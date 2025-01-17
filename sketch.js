@@ -1,3 +1,6 @@
+const scrollContainer = document.querySelector('main');
+
+
 let colorSets = [];
 let concepts = [
   'passive', 'active', 'dull', 'bright',
@@ -30,8 +33,9 @@ function navigateToStage(stage) {
     inactiveTimeout = null;
 
     if (stage >= 0 && stage < stages.length) {
+        setTimeout(() => {
         currentStage = stage;
-        
+        }, 700);
         window.location.hash = stages[stage];
 
         // Optional: Simulate fixed positions for each stage
@@ -368,8 +372,6 @@ function drawColorSetOnGraphics(graphics, colorSet) {
 }
 
 
-const scrollContainer = document.querySelector('main');
-
 scrollContainer.addEventListener('wheel', (event) => {
   // Prevent the default vertical scrolling
   event.preventDefault();
@@ -382,12 +384,9 @@ scrollContainer.addEventListener('wheel', (event) => {
   }
 });
 
-
-
 function isAtStart() {
   return (scrollContainer.scrollLeft === 0);
 }
-
 
 // if the user is on mobile, hide the page and display an error message
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
