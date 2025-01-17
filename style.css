@@ -82,9 +82,7 @@ h1{
 h2{
   font-size: 48px
 }
-#showcase p{
-  font-size: 20px;
-}
+
 #load {
   display: flex;
   align-items: center;
@@ -364,4 +362,56 @@ canvas {
 
 .no-select {
   user-select: none;
+}
+
+#showcase {
+  color:white; background: rgb(0,3,37);
+  background: linear-gradient(164deg, rgba(0,3,37,1) 0%, rgba(43,0,45,1) 50%, rgba(37,22,0,1) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly
+}
+
+#hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3vh
+}
+
+button {
+  margin-top: -6vh
+}
+
+h1 {
+  font-size: 8vw;
+  font-weight: 700
+}
+
+h2 {
+  font-size: 3vw;
+  font-weight: 600
+}
+
+p {
+  width: 60vw; 
+  text-align: justify;
+  text-justify: inter-word; 
+  font-size: 2vw;
+}
+
+
+@media (max-width: 800px) {
+  h1 {
+    font-size: 12vw;
+  }
+
+  h2 {
+    font-size: 5vw;
+  }
+
+  p {
+    font-size: 4vw;
+  }
 }
