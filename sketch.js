@@ -52,7 +52,7 @@ document.addEventListener('wheel', (event) => {
       navigateToStage(1);
       document.querySelector('#mainContainer').classList.add('cool-borders');
       accumulatedScroll = 0; // Reset after trigger
-  } else if (accumulatedScroll < -scrollThreshold * 3) {
+  } else if (accumulatedScroll < -scrollThreshold * 4) {
       // Scroll up
       navigateToStage(0);
       document.querySelector('#mainContainer').classList.remove('cool-borders');
