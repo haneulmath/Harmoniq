@@ -35,6 +35,8 @@ canvas {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.3);
+
+  transition: all 0.1s;
 }
 
 .hovered-color{
@@ -334,7 +336,7 @@ https://ryanmulligan.dev/blog/css-property-new-style/
 }
 
 .inactive {
-  display: none !important;
+  display: none;
 }
 
 canvas {
@@ -383,16 +385,17 @@ canvas {
 }
 
 button {
-  margin-top: -6vh
+  margin-top: -6vh;
+  font-size: 1.5rem !important;
 }
 
 h1 {
-  font-size: 8vw;
+  font-size: 6rem;
   font-weight: 700
 }
 
 h2 {
-  font-size: 3vw;
+  font-size: 2rem;
   font-weight: 600
 }
 
@@ -400,7 +403,7 @@ p {
   width: 60vw; 
   text-align: justify;
   text-justify: inter-word; 
-  font-size: 2vw;
+  font-size: 1.8rem;
 }
 
 
@@ -415,5 +418,9 @@ p {
 
   p {
     font-size: 4vw;
+  }
+
+  button {
+    font-size: 2rem !important;
   }
 }

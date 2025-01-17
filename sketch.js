@@ -23,9 +23,15 @@ const scrollThreshold = 5; // Adjust sensitivity (higher = less sensitive)
 const swipeThreshold = 5; // Minimum distance for a swipe to trigger stage change
 let accumulatedScroll = 0;
 
+let inactiveTimeout;
+
 function navigateToStage(stage) {
+    clearTimeout(inactiveTimeout);
+    inactiveTimeout = null;
+
     if (stage >= 0 && stage < stages.length) {
         currentStage = stage;
+        
         window.location.hash = stages[stage];
 
         // Optional: Simulate fixed positions for each stage
@@ -34,7 +40,9 @@ function navigateToStage(stage) {
             document.querySelector('#hoveredSetContainer').classList.add('inactive');
         } else if (stage === 1) {
             window.scrollTo(0, window.innerHeight); // Scroll to a set point for #main
-            document.querySelector('#hoveredSetContainer').classList.remove('inactive');
+            inactiveTimeout = setTimeout(() => {
+              document.querySelector('#hoveredSetContainer').classList.remove('inactive');
+            }, 200);
         }
     }
 }
