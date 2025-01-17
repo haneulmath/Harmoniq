@@ -19,8 +19,8 @@ function setup() {
 
 let currentStage = 0; // 0 for #, 1 for #main
 const stages = ['#', '#main'];
-const scrollThreshold = 50; // Adjust sensitivity (higher = less sensitive)
-const swipeThreshold = 50; // Minimum distance for a swipe to trigger stage change
+const scrollThreshold = 5; // Adjust sensitivity (higher = less sensitive)
+const swipeThreshold = 5; // Minimum distance for a swipe to trigger stage change
 let accumulatedScroll = 0;
 
 function navigateToStage(stage) {
@@ -39,8 +39,16 @@ function navigateToStage(stage) {
     }
 }
 
-/// Disable default scroll behavior
+
+let lastDeltaY = 0;
+ 
+
+// Disable default scroll behavior
 document.addEventListener('wheel', (event) => {
+  // Compare current deltaY with previous deltaY to determine momentum direction
+  const isMomentumIncreasing = (Math.abs(event.deltaY) - Math.abs(lastDeltaY) > 3)
+  
+  lastDeltaY = event.deltaY;
   accumulatedScroll += event.deltaY;
 
   if (event.deltaY > 0 || event.deltaY < 0) {
@@ -48,17 +56,20 @@ document.addEventListener('wheel', (event) => {
   }
 
   if (accumulatedScroll > scrollThreshold) {
-      // Scroll down
-      navigateToStage(1);
-      document.querySelector('#mainContainer').classList.add('cool-borders');
-      accumulatedScroll = 0; // Reset after trigger
-  } else if (accumulatedScroll < -scrollThreshold * 4) {
-      // Scroll up
+    // Scroll down
+    navigateToStage(1);
+    document.querySelector('#mainContainer').classList.add('cool-borders');
+    accumulatedScroll = 0; // Reset after trigger
+  } else if (accumulatedScroll < -scrollThreshold) {
+    // Scroll up
+    if (isAtStart() && isMomentumIncreasing) {
       navigateToStage(0);
       document.querySelector('#mainContainer').classList.remove('cool-borders');
       accumulatedScroll = 0; // Reset after trigger
+    }
   }
 }, { passive: false });
+
 
 let startY = 0;
 
@@ -346,4 +357,25 @@ function drawColorSetOnGraphics(graphics, colorSet) {
   graphics.textSize(16);
   graphics.textAlign(CENTER, CENTER);
   graphics.text(colorSet.concept, graphics.width / 2, graphics.height - 30);
+}
+
+
+const scrollContainer = document.querySelector('main');
+
+scrollContainer.addEventListener('wheel', (event) => {
+  // Prevent the default vertical scrolling
+  event.preventDefault();
+
+  if (currentStage === 1) {
+
+    // Scroll horizontally based on the vertical scroll amount
+    scrollContainer.scrollLeft += (event.deltaY + event.deltaX) * 0.8
+
+  }
+});
+
+
+
+function isAtStart() {
+  return (scrollContainer.scrollLeft === 0);
 }

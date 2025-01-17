@@ -350,6 +350,7 @@ canvas {
   }
 }
 
+
 #mainContainer {
   overflow: hidden; height: 100vh; border-top-left-radius: 7vw; border-top-right-radius: 7vw;
   transition: all 1s;
@@ -358,6 +359,7 @@ canvas {
 .cool-borders {
   border-top-left-radius: 0px !important; 
   border-top-right-radius: 0px !important;
+  overflow: scroll;
 }
 
 .no-select {
