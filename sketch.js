@@ -58,7 +58,7 @@ let lastDeltaY = 0;
 // Disable default scroll behavior
 document.addEventListener('wheel', (event) => {
   // Compare current deltaY with previous deltaY to determine momentum direction
-  const isMomentumIncreasing = (Math.abs(event.deltaY) - Math.abs(lastDeltaY) > 3)
+  const isMomentumIncreasing = (Math.abs(event.deltaY) - Math.abs(lastDeltaY) > 20)
   
   lastDeltaY = event.deltaY;
   accumulatedScroll += event.deltaY;
